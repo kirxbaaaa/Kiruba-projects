@@ -1,0 +1,66 @@
+public class SimpleBank {
+    public static void main(String[] args) {
+        HashMap<String, Account> accounts = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("1. Create Account");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Check Balance");
+            System.out.println("5. Exit");
+            System.out.print("Choose an option: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter Account Number: ");
+                    String accNumber = scanner.nextLine();
+                    accounts.put(accNumber, new BankAccount(accNumber));
+                    System.out.println("Account created.");
+                    break;
+                case 2:
+                    System.out.print("Enter Account Number: ");
+                    accNumber = scanner.nextLine();
+                    Account depositAccount = accounts.get(accNumber);
+                    if (depositAccount != null) {
+                        System.out.print("Enter amount to deposit: ");
+                        depositAccount.deposit(scanner.nextDouble());
+                    } else {
+                        System.out.println("Account not found.");
+                    }
+                    break;
+                case 3:
+                    System.out.print("Enter Account Number: ");
+                    accNumber = scanner.nextLine();
+                    Account withdrawAccount = accounts.get(accNumber);
+                    if (withdrawAccount != null) {
+                        System.out.print("Enter amount to withdraw: ");
+                        withdrawAccount.withdraw(scanner.nextDouble());
+                    } else {
+                        System.out.println("Account not found.");
+                    }
+                    break;
+                case 4:
+                    System.out.print("Enter Account Number: ");
+                    accNumber = scanner.nextLine();
+                    Account balanceAccount = accounts.get(accNumber);
+                    if (balanceAccount != null) {
+                        balanceAccount.checkBalance();
+                    } else {
+                        System.out.println("Account not found.");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid option. Try again.");
+            }
+        } while (choice != 5);
+
+        scanner.close();
+    }
+}

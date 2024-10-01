@@ -1,0 +1,24 @@
+// Define the first interface
+interface Animal {
+    void eat();
+}
+// Define the second interface
+interface Bird {
+    void fly();
+}
+// Create a class that implements both interfaces
+class Eagle implements Animal, Bird {
+    public void eat() {
+        System.out.println("Eagle eats prey.");
+    }
+    public void fly() {
+        System.out.println("Eagle flies high in the sky.");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Eagle eagle = new Eagle();
+        eagle.eat();
+        eagle.fly();
+    }
+}
